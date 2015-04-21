@@ -1,0 +1,17 @@
+{
+  "mysql": 
+  {
+    "server_root_password": "password"
+  },
+  
+  "phpapp": 
+  {
+    "db_user_password": "pass"
+  },
+  
+  "run_list": 
+  [ 
+    "recipe[apt]", 
+    "recipe[phpapp]" 
+  ]
+}
