@@ -20,6 +20,7 @@ rescue Chef::Exceptions::ResourceNotFound
 end
 
 include_recipe "php::module_mysql"
+include_recipe "php5-fpm::install"
 include_recipe "nginx"
 include_recipe "gearman"
 include_recipe "gearman::server"
@@ -37,6 +38,17 @@ end
 # This resource makes the php extension available via PECL
 php_pear "gearman" do
   action :install
+end
+
+# todo
+# set cgi.fix_pathinfo=0 in /etc/php5/fpm/php.ini
+
+template '/etc/nginx/sites-available/default' do
+  source 'nginx.default.erb'
+  cookbook 'phpapp'
+  mode '0644'
+  owner 'root'
+  group 'root'
 end
   
 mysql_service 'default' do

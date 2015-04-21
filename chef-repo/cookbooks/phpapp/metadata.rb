@@ -9,6 +9,7 @@ version          '0.1.0'
 depends "nginx"
 depends "mysql"
 depends "php"
+depends "php5-fpm"
 depends "database"
 depends "mysql2_chef_gem"
 depends "gearman"
