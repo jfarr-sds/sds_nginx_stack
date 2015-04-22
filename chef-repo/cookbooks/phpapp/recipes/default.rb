@@ -44,16 +44,41 @@ end
 # todo
 # set cgi.fix_pathinfo=0 in /etc/php5/fpm/php.ini
 
-template '/etc/nginx/sites-available/default' do
-  source 'nginx.default.erb'
+# create vhosts dir
+directory "/var/vhosts" do
+  owner node['nginx']['user']
+  group node['nginx']['group']
+  mode '0755'
+  action :create
+end
+
+# add vhost config for QA
+template '/etc/nginx/sites-available/qa-prime' do
+  source 'nginx.qa-prime.erb'
   cookbook 'phpapp'
   mode '0644'
   owner 'root'
   group 'root'
 end
-  
+
+# Enable QA vhost
+link "/etc/nginx/sites-enabled/qa-prime" do
+  to "/etc/nginx/sites-available/qa-prime"
+end
+
+=begin
+# install API source code
+git "/usr/share/nginx/html" do
+  repository "https://github.com/sentientdecisionscience/Sentient-Prime-Survey-API.git"
+  revision "master"
+  action :sync
+end
+=end
+
+
+
 mysql_service 'default' do
-  port '3307' # todo: need to use this port because the "mysql" instance still gets installed on 3306
+  port node['phpapp']['mysql']['port'] # todo: need to use this port because the "mysql" instance still gets installed on 3306
   version '5.5'
   initial_root_password node['phpapp']['mysql']['initial_root_password']
   action [:create, :start]
