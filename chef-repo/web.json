@@ -6,12 +6,13 @@
   
   "phpapp": 
   {
-    "db_user_password": "pass"
+    "db_user_password": "bdfudgf93efgf1eguf"
   },
   
   "run_list": 
   [ 
-    "recipe[apt]", 
-    "recipe[phpapp]" 
+    "recipe[apt]",
+    "recipe[phpapp]",
+    "recipe[phpapp::mysql_database]" 
   ]
 }
