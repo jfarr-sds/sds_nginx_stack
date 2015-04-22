@@ -24,6 +24,7 @@ include_recipe "php5-fpm::install"
 include_recipe "nginx"
 include_recipe "gearman"
 include_recipe "gearman::server"
+include_recipe 'git'
 
 
 # the php_pear resource expects this directory to exist

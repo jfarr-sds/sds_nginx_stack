@@ -15,7 +15,7 @@ server {
 
         error_page 500 502 503 504 /50x.html;
         location = /50x.html {
-              root /usr/share/nginx/www;
+              root /usr/share/nginx/html;
         }
 
         # pass the PHP scripts to FastCGI server listening on the php-fpm socket
@@ -25,7 +25,6 @@ server {
                 fastcgi_index index.php;
                 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
                 include fastcgi_params;
-                
         }
 
 }
