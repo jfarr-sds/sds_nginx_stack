@@ -44,4 +44,5 @@ mysql_database_user node['phpapp']['db_username'] do
   database_name node['phpapp']['database_name']
   privileges [:select,:update,:insert,:create,:delete]
   action :grant
+  notifies :restart, 'mysql_service[default]'
 end
