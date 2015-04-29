@@ -25,6 +25,8 @@ include_recipe "nginx"
 include_recipe "gearman"
 include_recipe "gearman::server"
 include_recipe 'git'
+include_recipe 'phpunit'
+
 
 
 # the php_pear resource expects this directory to exist

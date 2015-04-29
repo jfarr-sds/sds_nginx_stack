@@ -36,3 +36,4 @@ node.default["php_fpm"]["pools"] =
 	}
 }'
 
+node.default['phpunit']['install_method'] = 'phar'
