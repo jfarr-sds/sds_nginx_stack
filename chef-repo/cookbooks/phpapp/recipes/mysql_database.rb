@@ -22,17 +22,6 @@ mysql2_chef_gem 'default' do
   action :install
 end
 
-# god-awful hack to get around the mysql cookbooks insistence on installing 
-# multiple instances of mysql.
-
-remote_file "mysql conf hack" do
-  path "/etc/mysql/my.cnf" 
-  source "file:///etc/mysql-default/my.cnf"
-  owner 'mysql'
-  group 'mysql'
-  mode 0640
-end
-
 mysql_database node['phpapp']['database_name'] do
   connection(
     :host     => node['phpapp']['mysql']['host'],

@@ -68,15 +68,16 @@ link "/etc/nginx/sites-enabled/qa-prime" do
   to "/etc/nginx/sites-available/qa-prime"
 end
 
-# todo
-# disable default website
+# link the source to the deployment 
+# todo: this is for development only
+link "/var/vhosts/qa-prime" do
+  to "/home/vagrant/chef-repo/Sentient-Prime-Survey-API/"
+end
+
 
 # todo
 # fix logging config in application/config/config.php
 
-# todo
-# resolve issues with multiple mysql instances, ports, sockets etc
-# update config/database.php
 
 =begin
 # install API source code
