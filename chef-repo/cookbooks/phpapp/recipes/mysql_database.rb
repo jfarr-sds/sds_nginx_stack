@@ -1,6 +1,7 @@
 
 mysql_service 'default' do
   port node['phpapp']['mysql']['port'] # todo: need to use this port because the "mysql" instance still gets installed on 3306
+  socket node['phpapp']['mysql']['socket']
   version '5.5'
   initial_root_password node['mysql']['server_root_password']
   action [:create, :start]
@@ -19,6 +20,17 @@ end
 
 mysql2_chef_gem 'default' do
   action :install
+end
+
+# god-awful hack to get around the mysql cookbooks insistence on installing 
+# multiple instances of mysql.
+
+remote_file "mysql conf hack" do
+  path "/etc/mysql/my.cnf" 
+  source "file:///etc/mysql-default/my.cnf"
+  owner 'mysql'
+  group 'mysql'
+  mode 0640
 end
 
 mysql_database node['phpapp']['database_name'] do
@@ -42,7 +54,7 @@ mysql_database_user node['phpapp']['db_username'] do
   })
   password node['phpapp']['db_user_password']
   database_name node['phpapp']['database_name']
-  privileges [:select,:update,:insert,:create,:delete]
+  privileges [:select,:update,:insert,:create,:delete,:execute]
   action :grant
   notifies :restart, 'mysql_service[default]'
 end

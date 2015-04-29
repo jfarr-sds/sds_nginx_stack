@@ -3,8 +3,8 @@ default["phpapp"]["db_username"] = 'api-prime'
 
 default["phpapp"]['mysql']["host"] = '127.0.0.1'
 default["phpapp"]['mysql']["username"] = 'root'
-default["phpapp"]['mysql']["port"] = '3307'
-default["phpapp"]['mysql']["socket"] = ':socket   => "/var/run/mysql-default/mysqld.sock'
+default["phpapp"]['mysql']["port"] = '3306'
+default["phpapp"]['mysql']["socket"] = '/var/run/mysqld/mysqld.sock'
 
 node.default["php_fpm"]["pools"] = 
 '{ 	"www":
