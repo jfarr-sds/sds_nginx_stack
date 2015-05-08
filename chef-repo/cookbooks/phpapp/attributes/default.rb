@@ -1,5 +1,11 @@
 default["phpapp"]["database_name"] = 'api-prime'
 default["phpapp"]["db_username"] = 'api-prime'
+default["phpapp"]["dba_username"] = 'dba'
+default["phpapp"]["dba_password"] = 'password'
+default["phpapp"]["dba_host"] = '%'
+default["phpapp"]["da_systems_username"] = 'da-systems'
+default["phpapp"]["da_systems_password"] = 'password'
+default["phpapp"]["da_systems_host"] = '%'
 
 default["phpapp"]['mysql']["host"] = '127.0.0.1'
 default["phpapp"]['mysql']["username"] = 'root'
