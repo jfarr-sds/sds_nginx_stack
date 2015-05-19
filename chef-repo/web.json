@@ -13,6 +13,6 @@
   [ 
     "recipe[apt]",
     "recipe[phpapp]",
-    "recipe[phpapp::mysql_database]" 
+    "recipe[phpapp::mysql_database]"
   ]
 }
